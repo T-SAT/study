@@ -1,6 +1,6 @@
 #include <SPI.h>
 
-const int L3GD20_CS = 6;
+const int L3GD20_CS = A1;
 //const int SS = 10;      // 必ず 10 番を出力にすること
 //const int MOSI = 11;
 //const int MISO = 12;
