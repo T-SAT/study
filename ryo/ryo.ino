@@ -3,7 +3,7 @@
 
 
 
-void setup() {
+void setup() {/////////////
    digitalWrite(10,HIGH);
   pinMode(10,OUTPUT);
  init_gyro();
@@ -30,7 +30,7 @@ void loop() {
   Serial.println(deg_z);
   old_x = x;
   old_y = y;
-  old_z = z;//
+  old_z = z;
   
   delay(10);
 }
