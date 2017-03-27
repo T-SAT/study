@@ -33,7 +33,8 @@ extern const byte L3GD20_MS;
 
 void L3GD20_write(byte reg,byte val);
 byte L3GD20_read(byte reg);
-void abridgement_gyro(void);
 void init_gyro(void);
-
+void read_gyro(float *x,float *y,float *z);
+void cal_gyro(float *x,float *y,float *z);
+void push_gyro(float *x,float *y,float *z);
 #endif

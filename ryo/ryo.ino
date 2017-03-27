@@ -10,6 +10,9 @@ void setup() {
 }
 
 void loop() {
-  abridgement_gyro();
+  float x,y,z;
+  read_gyro(&x,&y,&z);
+  cal_gyro(&x,&y,&z);
+  push_gyro(&x,&y,&z);
   delay(10);
 }
