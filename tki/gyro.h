@@ -32,7 +32,7 @@ extern const byte L3GD20_MS;
 void init_gyro();
 void L3GD20_write(byte reg, byte val);
 byte L3GD20_read(byte reg);
-void get_gyro();
-void calc_gyro();
-void print_gyro();
+void get_gyro(float *x,float *y,float *z);
+void calc_gyro(float *x,float *y,float *z);
+void print_gyro(float *x,float *y,float *z);
 #endif

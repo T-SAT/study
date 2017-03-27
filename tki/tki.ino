@@ -7,9 +7,10 @@ void setup() {
 
 }
 void loop() {
-  get_gyro();
-  calc_gyro();
-  print_gyro();
+  float x,y,z;
+  get_gyro(&x,&y,&z);
+  calc_gyro(&x,&y,&z);
+  print_gyro(&x,&y,&z);
   
   delay(10);
 }

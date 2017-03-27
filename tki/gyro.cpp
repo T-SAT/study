@@ -63,35 +63,39 @@ void init_gyro() {
   //   ||++---- BW1-BW0: cut off 12.5[Hz]
   //   ++------ DR1-DR0: ODR 95[HZ]
 }
-short X, Y, Z;
-float x, y, z;
-void get_gyro() {
+
+
+void get_gyro(float *x,float *y,float *z) {
+  short X,Y,Z;
+  
   X = L3GD20_read(L3GD20_X_H);
-  x = X = (X << 8) | L3GD20_read(L3GD20_X_L);
+  *x = X = (X << 8) | L3GD20_read(L3GD20_X_L);
   Y = L3GD20_read(L3GD20_Y_H);
-  y = Y = (Y << 8) | L3GD20_read(L3GD20_Y_L);
+  *y = Y = (Y << 8) | L3GD20_read(L3GD20_Y_L);
   Z = L3GD20_read(L3GD20_Z_H);
-  z = Z = (Z << 8) | L3GD20_read(L3GD20_Z_L);
+  *z = Z = (Z << 8) | L3GD20_read(L3GD20_Z_L);
 }
-void calc_gyro() {
-  x *= 0.00875; // +-250dps
+void calc_gyro(float *x,float *y,float *z) {
+  *x *= 0.00875; // +-250dps
   //x *= 0.0175;// +-500dps
   //x *= 0.07;  // +-2000dps
-  y *= 0.00875; // +-250dps
-  z *= 0.00875; // +-250dps
+  *y *= 0.00875; // +-250dps
+  *z *= 0.00875; // +-250dps
 
 }
-void print_gyro() {
+void print_gyro(float *x,float *y,float *z) {
+  /*
   Serial.print(X);    // X axis (reading)
   Serial.print("\t");
   Serial.print(Y);    // Y axis (reading)
   Serial.print("\t");
   Serial.print(Z);    // Z axis (reading)
   Serial.print("\t");
-  Serial.print(x);    // X axis (deg/sec)
+  */
+  Serial.print(*x);    // X axis (deg/sec)
   Serial.print("\t");
-  Serial.print(y);    // Y axis (deg/sec)
+  Serial.print(*y);    // Y axis (deg/sec)
   Serial.print("\t");
-  Serial.println(z);  // Z axis (deg/sec)
+  Serial.println(*z);  // Z axis (deg/sec)
 }
 
