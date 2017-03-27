@@ -1,3 +1,5 @@
+/////////L3GD20//////////////////////////
+
 #include "gyro.h"
 
 float getDt(void) {
