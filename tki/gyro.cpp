@@ -95,7 +95,7 @@ void print_gyro(float *x,float *y,float *z) {
   Serial.print(*x);    // X axis (deg/sec)
   Serial.print("\t");
   Serial.print(*y);    // Y axis (deg/sec)
-  Serial.print("\t");
-  Serial.println(*z);  // Z axis (deg/sec)
+  Serial.print("\t,");
+  Serial.print(*z);  // Z axis (deg/sec)
 }
 
