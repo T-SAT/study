@@ -86,7 +86,8 @@ void cal_gyro(float *x,float *y,float *z)
   //x *= 0.07;  // +-2000dps
   *y *= 0.00875; // +-250dps
   *z *= 0.00875; // +-250dps
-}///////////////////////////////////////////////////////////////////////////////////
+}
+
 void push_gyro(float *x,float *y,float *z)
 {
  
@@ -102,6 +103,19 @@ void push_gyro(float *x,float *y,float *z)
   Serial.print(*y);    // Y axis (deg/sec)
   Serial.print("\t");
   Serial.println(*z);  // Z axis (deg/sec)
+  
+}
+
+float getDt(void)
+{
+  float time;
+  static float lastTime=(float)millis()/1000.0;
+  float currentTime = (float)millis()/1000.0;
+
+  time = currentTime-lastTime;
+  lastTime=(float)millis()/1000.0;
+
+  return(time);
 }
 
 

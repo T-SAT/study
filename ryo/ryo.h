@@ -37,4 +37,5 @@ void init_gyro(void);
 void read_gyro(float *x,float *y,float *z);
 void cal_gyro(float *x,float *y,float *z);
 void push_gyro(float *x,float *y,float *z);
+float getDt(void);
 #endif
