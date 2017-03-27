@@ -23,6 +23,8 @@ const byte L3GD20_Z_H = 0x2D;
 const byte L3GD20_RW = 0x80;
 const byte L3GD20_MS = 0x40;
 
+
+
 void L3GD20_write(byte reg, byte val)
 {
   digitalWrite(L3GD20_CS, LOW);

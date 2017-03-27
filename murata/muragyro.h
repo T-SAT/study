@@ -31,6 +31,7 @@ extern const byte L3GD20_Z_H;
 extern const byte L3GD20_RW;
 extern const byte L3GD20_MS;
 
+
 void L3GD20_write(byte reg, byte val);
 byte L3GD20_read(byte reg);
 void init_gyro(int a);
