@@ -1,6 +1,6 @@
 #include <SPI.h>
 
-const int L3GD20_CS = SS;
+const int L3GD20_CS = A1;
 //const int SS = 10;      // 必ず 10 番を出力にすること
 //const int MOSI = 11;
 //const int MISO = 12;
@@ -43,8 +43,11 @@ byte L3GD20_read(byte reg)
 }
 
 void setup() {
-  digitalWrite(SS, HIGH);
-  pinMode(SS, OUTPUT);
+  pinMode(10, OUTPUT);
+  digitalWrite(10, HIGH);
+  
+  pinMode(L3GD20_CS, OUTPUT);
+  digitalWrite(L3GD20_CS, HIGH);
   
   SPI.begin();
   SPI.setBitOrder(MSBFIRST);
