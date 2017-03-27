@@ -1,7 +1,7 @@
-#include<SPI.h>
+#include <SPI.h>
 #include "muragyro.h"
 
-const int L3GD20_CS = A1;
+int L3GD20_CS;
 //const int SS = 10;      // 必ず 10 番を出力にすること
 //const int MOSI = 11;
 //const int MISO = 12;
@@ -43,12 +43,13 @@ byte L3GD20_read(byte reg)
   return ret;
 }
 
-void init_gyro(void){
+void init_gyro(int a){
 
   
-  pinMode(L3GD20_CS, OUTPUT);
-  digitalWrite(L3GD20_CS, HIGH);
+  pinMode(a, OUTPUT);
+  digitalWrite(a, HIGH);
   
+  L3GD20_CS = a;
   SPI.begin();
   SPI.setBitOrder(MSBFIRST);
   SPI.setClockDivider(SPI_CLOCK_DIV8); // 8MHz/8 = 1MHz; (max 10MHz)
@@ -68,33 +69,30 @@ void init_gyro(void){
 
 }
 
-void abridgement_gyro(void){
-short X, Y, Z;
-  float x, y, z;
+void abridgement_gyro(float *x,float *y,float *z){
 
+short X, Y, Z;
+  
   X = L3GD20_read(L3GD20_X_H);
-  x = X = (X << 8) | L3GD20_read(L3GD20_X_L);
+  *x = X = (X << 8) | L3GD20_read(L3GD20_X_L);
   Y = L3GD20_read(L3GD20_Y_H);
-  y = Y = (Y << 8) | L3GD20_read(L3GD20_Y_L);
+  *y = Y = (Y << 8) | L3GD20_read(L3GD20_Y_L);
   Z = L3GD20_read(L3GD20_Z_H);
-  z = Z = (Z << 8) | L3GD20_read(L3GD20_Z_L);
- 
-  x *= 0.00875; // +-250dps
+  *z = Z = (Z << 8) | L3GD20_read(L3GD20_Z_L);
+}
+void cal_gyro(float *x,float *y,float *z){
+  *x *= 0.00875; // +-250dps
   //x *= 0.0175;// +-500dps
   //x *= 0.07;  // +-2000dps
-  y *= 0.00875; // +-250dps
-  z *= 0.00875; // +-250dps
- 
-  Serial.print(X);    // X axis (reading)
-  Serial.print("\t");
-  Serial.print(Y);    // Y axis (reading)
-  Serial.print("\t");
-  Serial.print(Z);    // Z axis (reading)
-  Serial.print("\t");
-  Serial.print(x);    // X axis (deg/sec)
-  Serial.print("\t");
-  Serial.print(y);    // Y axis (deg/sec)
-  Serial.print("\t");
-  Serial.println(z);  // Z axis (deg/sec)
-
+  *y *= 0.00875; // +-250dps
+  *z *= 0.00875; // +-250dps
 }
+void pri_gyro(float *x,float *y,float *z){
+  
+  Serial.print(*x);    // X axis (deg/sec)
+  Serial.print("\t");
+  Serial.print(*y);    // Y axis (deg/sec)
+  Serial.print("\t");
+  Serial.println(*z);  // Z axis (deg/sec)
+}
+
