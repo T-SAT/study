@@ -30,7 +30,7 @@ void loop() {
   Serial.println(deg_z);
   old_x = x;
   old_y = y;
-  old_z = z;
+  old_z = z;//
   
   delay(10);
 }
