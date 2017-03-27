@@ -1,9 +1,15 @@
-void setup() {
-  // put your setup code here, to run once:
+#include <SPI.h>
+#include "ryo.h"
 
+
+
+void setup() {
+   digitalWrite(10,HIGH);
+  pinMode(10,OUTPUT);
+ init_gyro();
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
-
+  abridgement_gyro();
+  delay(10);
 }
